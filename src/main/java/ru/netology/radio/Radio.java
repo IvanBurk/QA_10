@@ -6,13 +6,22 @@ public class Radio {
     private int currentStation;
     private int currentVolume;
     private int minVolume = 0;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
+    private int quantityStation = 10;
+
+    public Radio() {
+    }
+
+    public Radio(int quantityStation) {
+        this.quantityStation = quantityStation;
+    }
 
     public void setCurrentStationNext(int currentStation) {
         this.currentStation = currentStation;
     }
 
     public void setStationNext() {
+        maxStation = quantityStation - 1;
         if (currentStation >= maxStation) {
             currentStation = minStation;
         } else {
@@ -25,6 +34,7 @@ public class Radio {
     }
 
     public void setStationPrew() {
+        maxStation = quantityStation - 1;
         if (currentStation <= minStation) {
             currentStation = maxStation;
         } else {
@@ -33,6 +43,7 @@ public class Radio {
     }
 
     public void setCurrentStationValid(int currentStation) {
+        maxStation = quantityStation - 1;
         if (currentStation >= maxStation) {
             currentStation = minStation;
         } else if (currentStation <= minStation) {
@@ -65,6 +76,6 @@ public class Radio {
     }
 
     public int getIncreaseVolume() {
-       return currentVolume;
+        return currentVolume;
     }
 }
