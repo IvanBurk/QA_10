@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
+    Radio dance = new Radio();
     @Test
     void StationNext() {
-        Radio dance = new Radio();
         dance.setCurrentStationNext(7);
         dance.setStationNext();
         int actual = dance.getStation();
@@ -18,7 +18,6 @@ public class RadioTest {
 
     @Test
     void StationNextToTheBeginning() {
-        Radio dance = new Radio();
         dance.setCurrentStationNext(9);
         dance.setStationNext();
         int actual = dance.getStation();
@@ -28,7 +27,6 @@ public class RadioTest {
 
     @Test
     void StationPrew() {
-        Radio dance = new Radio();
         dance.setCurrentStationNext(7);
         dance.setStationPrew();
         int actual = dance.getStation();
@@ -38,7 +36,6 @@ public class RadioTest {
 
     @Test
     void StationPrewToTheEnd() {
-        Radio dance = new Radio();
         dance.setCurrentStationNext(0);
         dance.setStationPrew();
         int actual = dance.getStation();
@@ -48,7 +45,6 @@ public class RadioTest {
 
     @Test
     void CurrentStation() {
-        Radio dance = new Radio();
         dance.setCurrentStationValid(5);
         int actual = dance.getStation();
 
@@ -57,7 +53,6 @@ public class RadioTest {
 
     @Test
     void CurrentStationPrew() {
-        Radio dance = new Radio();
         dance.setCurrentStationValid(-1);
         int actual = dance.getStation();
 
@@ -66,7 +61,6 @@ public class RadioTest {
 
     @Test
     void CurrentStationNext() {
-        Radio dance = new Radio();
         dance.setCurrentStationValid(12);
         int actual = dance.getStation();
 
@@ -75,17 +69,15 @@ public class RadioTest {
 
     @Test
     void CurrentVolumeUpBorder() {
-        Radio dance = new Radio();
-        dance.setCurrentVolume(12);
+        dance.setCurrentVolume(101);
         dance.setIncreaseVolumeUp();
         int actual = dance.getIncreaseVolume();
 
-        assertEquals(10, actual);
+        assertEquals(100, actual);
     }
 
     @Test
     void CurrentVolumeDownBorder() {
-        Radio dance = new Radio();
         dance.setCurrentVolume(-1);
         dance.setIncreaseVolumeDown();
         int actual = dance.getIncreaseVolume();
@@ -95,21 +87,80 @@ public class RadioTest {
 
     @Test
     void CurrentVolumeDown() {
-        Radio dance = new Radio();
-        dance.setCurrentVolume(10);
+        dance.setCurrentVolume(100);
         dance.setIncreaseVolumeDown();
         int actual = dance.getIncreaseVolume();
 
-        assertEquals(9, actual);
+        assertEquals(99, actual);
     }
 
     @Test
     void CurrentVolumeUp() {
-        Radio dance = new Radio();
         dance.setCurrentVolume(0);
         dance.setIncreaseVolumeUp();
         int actual = dance.getIncreaseVolume();
 
         assertEquals(1, actual);
+    }
+
+    Radio danceQuantity = new Radio(7);
+    @Test
+    void QuantityStationBeginning() {
+        danceQuantity.setCurrentStationNext(6);
+        danceQuantity.setStationNext();
+        int actual = danceQuantity.getStation();
+
+        assertEquals(0, actual);
+    }
+
+    @Test
+    void QuantityStationNext() {
+        danceQuantity.setCurrentStationNext(5);
+        danceQuantity.setStationNext();
+        int actual = danceQuantity.getStation();
+
+        assertEquals(6, actual);
+    }
+
+    @Test
+    void QuantityStationPrew() {
+        danceQuantity.setCurrentStationNext(4);
+        danceQuantity.setStationPrew();
+        int actual = danceQuantity.getStation();
+
+        assertEquals(3, actual);
+    }
+
+    @Test
+    void QuantityStationPrewToTheEnd() {
+        danceQuantity.setCurrentStationNext(0);
+        danceQuantity.setStationPrew();
+        int actual = danceQuantity.getStation();
+
+        assertEquals(6, actual);
+    }
+
+    @Test
+    void QuantityCurrentStation() {
+        danceQuantity.setCurrentStationValid(5);
+        int actual = danceQuantity.getStation();
+
+        assertEquals(5, actual);
+    }
+
+    @Test
+    void QuantityCurrentStationPrew() {
+        danceQuantity.setCurrentStationValid(-1);
+        int actual = danceQuantity.getStation();
+
+        assertEquals(6, actual);
+    }
+
+    @Test
+    void QuantityCurrentStationNext() {
+        danceQuantity.setCurrentStationValid(12);
+        int actual = danceQuantity.getStation();
+
+        assertEquals(0, actual);
     }
 }
